@@ -5,6 +5,7 @@ public class TestDriver {
     private Pasta pasta1;
     private Pasta pasta2;
     private Pasta pasta3;
+    private Pasta pasta4;
     private Arquivo arquivo1;
     private Arquivo arquivo2;
     private Arquivo arquivo3;
@@ -14,6 +15,7 @@ public class TestDriver {
         pasta1 = new Pasta("Pasta1");
         pasta2 = new Pasta("Pasta2");
         pasta3 = new Pasta("Pasta3");
+        pasta4 = new Pasta("Pasta4");
         arquivo1 = new Arquivo("Arquivo1", 100);
         arquivo2 = new Arquivo("Arquivo2", 200);
         arquivo3 = new Arquivo("Arquivo3", 300);
@@ -23,6 +25,7 @@ public class TestDriver {
         raiz.adicionarArquivo(arquivo1);
         pasta1.adicionarArquivo(arquivo2);
         pasta3.adicionarArquivo(arquivo3);
+        pasta3.adicionarSubPasta(pasta4);
     }
 
     @Test
@@ -56,6 +59,26 @@ public class TestDriver {
         Assertions.assertEquals(0, pasta1.getNumDeArquivos());
         Assertions.assertEquals(400, raiz.getTamanho());
         Assertions.assertEquals(0, pasta1.getTamanho());
+    }
+
+    @Test
+    public void testGetNumerodePastas(){
+        Assertions.assertEquals(4, raiz.getNumDePastas());
+        Assertions.assertEquals(0, pasta1.getNumDePastas());
+        Assertions.assertEquals(2, pasta2.getNumDePastas());
+        Assertions.assertEquals(1, pasta3.getNumDePastas());
+
+
+    }
+
+    @Test
+    public void removerSubPastas(){
+        raiz.removerSubPasta(pasta1);
+        pasta3.removerSubPasta(pasta4);
+        Assertions.assertEquals(2, raiz.getNumDePastas());
+        Assertions.assertEquals(0, pasta3.getNumDePastas());
+
+
     }
 
 

@@ -46,6 +46,14 @@ public class Pasta {
         return numDeArquivos;
     }
 
+    public int getNumDePastas() {
+        int numDePastas = subPastas.size();
+        for (Pasta subPasta : subPastas) {
+            numDePastas += subPasta.getNumDePastas();
+        }
+        return numDePastas;
+    }
+
     public long getTamanho() {
         long tamanho = 0;
         for (Arquivo arquivo : arquivos) {
